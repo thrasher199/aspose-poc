@@ -55,11 +55,34 @@ class MyReportServiceTest {
         customerRepository.save(customer);
     }
 
+    private void initCustomer(int i){
+        Customer customer = new Customer();
+        customer.setId((long) i);
+        customer.setCustomerName("Customer " + i);
+        customer.setAddress("Customer " + i + " Address");
+        customer.setCustomerLoans(init1000LoanType(90, customer));
+        customerRepository.save(customer);
+    }
+
+    private Set<CustomerLoan> init1000LoanType(int size, Customer customer){
+        Set<CustomerLoan> customerLoanSet = new LinkedHashSet<>();
+        for (int i = 1; i <= size ; i++) {
+            CustomerLoan customerLoan = new CustomerLoan();
+            customerLoan.setLoanType("LT-" + i);
+            customerLoan.setLoanAmount(new BigDecimal(100).add(BigDecimal.valueOf(i)));
+            customerLoan.setCustomer(customer);
+            customerLoanSet.add(customerLoan);
+        }
+
+        return customerLoanSet;
+    }
+
     @Test
     void generateReport() throws Exception {
-        int size = 1;
+        int size = 10000;
         for (int i = 1; i <= size; i++) {
-            initData(i);
+            //initData(i);
+            initCustomer(i);
         }
         //done insert data in db
         System.out.println("Done insert");
