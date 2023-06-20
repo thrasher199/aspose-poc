@@ -1,5 +1,7 @@
 package com.mircolink.aspose.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -17,6 +19,7 @@ public class CustomerLoan {
     @Column(name = "loan_amount", precision = 19, scale = 2)
     private BigDecimal loanAmount;
 
+    @JsonIgnore
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "customer_id")
     private Customer customer;

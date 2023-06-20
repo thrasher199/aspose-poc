@@ -1,5 +1,6 @@
 package com.mircolink.aspose.service;
 
+import com.aspose.words.net.System.Data.DataTable;
 import com.mircolink.aspose.dao.MyDao;
 import com.mircolink.aspose.model.Customer;
 import com.mircolink.aspose.model.CustomerLoan;
@@ -86,7 +87,7 @@ class MyReportServiceTest {
         }
         //done insert data in db
         System.out.println("Done insert");
-
+        DataTable dataTable = new DataTable();
         List<Customer> customerList = customerRepository.findAll();
 
         long start = System.currentTimeMillis();

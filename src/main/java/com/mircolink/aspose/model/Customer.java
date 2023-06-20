@@ -1,5 +1,6 @@
 package com.mircolink.aspose.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
@@ -18,6 +19,7 @@ public class Customer {
     private String address;
 
     @OneToMany(mappedBy = "customer", orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
     private Set<CustomerLoan> customerLoans = new LinkedHashSet<>();
 
     @Column(name = "customer_name")
